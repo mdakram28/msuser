@@ -35,7 +35,7 @@ public class UserController {
 		return new Welcome(String.format(message, name));
 	}
 
-	@PostMapping("/user/add")
+	@PostMapping("/add")
 	@ResponseBody
 	public void addUser(@RequestParam(name = "username", required = true) String username,
 			@RequestParam(name = "name", required = true) String name,
@@ -44,19 +44,19 @@ public class UserController {
 		userDAO.insert(user);
 	}
 
-	@GetMapping("/user/all")
+	@GetMapping("/all")
 	@ResponseBody
 	public Stream<User> getAllUsers() {
 		return userDAO.getAllUsersStream();
 	}
 
-	@GetMapping("/user/usernameAvailable")
+	@GetMapping("/usernameAvailable")
 	@ResponseBody
 	public boolean usernameAvailable(@RequestParam(name = "username", required = true) String username) {
 		return userDAO.usernameAvailable(username);
 	}
 	
-	@PostMapping("/user/details")
+	@PostMapping("/details")
 	@ResponseBody
 	public User getUserDetails(@RequestParam(name = "username", required = true) String username) {
 		return userDAO.findByUsername(username);
