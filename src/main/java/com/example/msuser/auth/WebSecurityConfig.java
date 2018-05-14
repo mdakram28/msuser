@@ -38,11 +38,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password("{noop}password").roles("ADMIN");
-	}
-
-	@Override
 	protected AuthenticationManager authenticationManager() throws Exception {
 		AuthenticationProvider authProvider = new CustomAuthManager(userDAO);
 		List<AuthenticationProvider> authManagers = new ArrayList<>();

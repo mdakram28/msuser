@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,5 +62,11 @@ public class UserController {
 	@ResponseBody
 	public User getUserDetails(@RequestParam(name = "username", required = true) String username) {
 		return userDAO.findByUsername(username);
+	}
+	
+	@GetMapping("/details")
+	@ResponseBody
+	public User getCurrentUserDetails() {
+		return userDAO.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 	}
  }
