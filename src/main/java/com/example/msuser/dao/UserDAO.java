@@ -12,4 +12,6 @@ public interface UserDAO {
 	boolean usernameAvailable(String username);
 
 	Stream<User> getAllUsersStream();
+	
+	public boolean authenticate(String username, String password);
 }

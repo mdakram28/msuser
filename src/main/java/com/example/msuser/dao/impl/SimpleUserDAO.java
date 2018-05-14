@@ -35,4 +35,11 @@ public class SimpleUserDAO implements UserDAO {
 	public User findByUsername(String username) {
 		return users.get(username);
 	}
+
+	@Override
+	public boolean authenticate(String username, String password) {
+		if(!users.containsKey(username))return false;
+		User user = users.get(username);
+		return user.getPassword().equals(password);
+	}
 }

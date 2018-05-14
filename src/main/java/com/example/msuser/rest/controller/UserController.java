@@ -38,9 +38,10 @@ public class UserController {
 	@PostMapping("/add")
 	@ResponseBody
 	public void addUser(@RequestParam(name = "username", required = true) String username,
+			@RequestParam(name = "password", required = true) String password,
 			@RequestParam(name = "name", required = true) String name,
 			@RequestParam(name = "userGroup", required = false, defaultValue= "VISITOR") String userGroup) {
-		User user = new User(username, name, new Date(new java.util.Date().getTime()), userGroup);
+		User user = new User(username, password, name, new Date(new java.util.Date().getTime()), userGroup);
 		userDAO.insert(user);
 	}
 
